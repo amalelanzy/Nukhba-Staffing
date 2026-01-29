@@ -262,7 +262,7 @@ const App = () => {
       <Navbar lang={lang} setLang={setLang} scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} t={t} onOrderClick={() => handleOrderClick()} />
 
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[650px] w-full overflow-hidden bg-slate-900 flex items-center justify-center">
+      <section className="relative h-[80vh] md:h-screen min-h-[650px] w-full overflow-hidden bg-slate-900 flex items-center justify-center">
         {slides.map((slide, index) => (
           <div key={index} className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
             <div className="absolute inset-0">
@@ -293,10 +293,10 @@ const App = () => {
             </div>
           </div>
         ))}
-        <button onClick={prevSlide} className={`absolute ${lang === 'ar' ? 'right-6 md:right-10' : 'left-6 md:left-10'} top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-white/10 bg-black/10 hover:bg-amber-600 text-white transition-all backdrop-blur-md hover:scale-110 active:scale-90 pointer-events-auto`}>
+        <button onClick={prevSlide} className={`absolute ${lang === 'ar' ? 'right-2 md:right-10' : 'left-2 md:left-10'} top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-white/10 bg-black/10 hover:bg-amber-600 text-white transition-all backdrop-blur-md hover:scale-110 active:scale-90 pointer-events-auto`}>
           {lang === 'ar' ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
         </button>
-        <button onClick={nextSlide} className={`absolute ${lang === 'ar' ? 'left-6 md:left-10' : 'right-6 md:right-10'} top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-white/10 bg-black/10 hover:bg-amber-600 text-white transition-all backdrop-blur-md hover:scale-110 active:scale-90 pointer-events-auto`}>
+        <button onClick={nextSlide} className={`absolute ${lang === 'ar' ? 'left-2 md:left-10' : 'right-2 md:right-10'} top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-white/10 bg-black/10 hover:bg-amber-600 text-white transition-all backdrop-blur-md hover:scale-110 active:scale-90 pointer-events-auto`}>
           {lang === 'ar' ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
         </button>
       </section>
