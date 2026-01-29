@@ -32,8 +32,8 @@ const translations = {
     stats: [
       { label: "تدريب مكثف وأداء احترافي", value: "كوادر مؤهلة" },
       { label: "ضمان كامل عبر منصة مساند", value: "عقود رسمية" },
-      { label: "التزام بالمواعيد المحددة", value: "سرعة وصول" },
-      { label: "دعم مستمر بعد استلام العاملة", value: "متابعة دورية" }
+      { label: "دعم مستمر بعد استلام العاملة", value: "متابعة دورية" },
+      { label: "التزام بالمواعيد المحددة", value: "سرعة وصول" }
     ],
     steps: {
       title: "رحلتكِ معنا", subtitle: "بثلاث خطوات استثنائية",
@@ -68,10 +68,10 @@ const translations = {
       }
     ],
     stats: [
-      { label: "Elite Families", value: "+1,500" },
-      { label: "Guaranteed", value: "100%" },
-      { label: "Full Coverage", value: "Kingdom" },
-      { label: "Speed", value: "Record" }
+      { label: "Intensive Training & Professionalism", value: "Qualified Staff" },
+      { label: "Full Warranty via Musaned", value: "Official Contracts" },
+      { label: "Support After Staff Delivery", value: "Regular Follow-up" },
+      { label: "Commitment to Scheduled Times", value: "Fast Arrival" }
     ],
     steps: {
       title: "Your Journey", subtitle: "Three Simple Steps",
