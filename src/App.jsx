@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { 
-  Phone, MessageCircle, CheckCircle2, Globe, ShieldCheck, Menu, X, 
-  User, MapPin, Send, ArrowRight, Star, Users, Award, Zap, 
-  ChevronRight, ChevronLeft, Heart, FileText, Truck, Verified, 
+import {
+  Phone, MessageCircle, CheckCircle2, Globe, ShieldCheck, Menu, X,
+  User, MapPin, Send, ArrowRight, Star, Users, Award, Zap,
+  ChevronRight, ChevronLeft, Heart, FileText, Truck, Verified,
   Search, ClipboardCheck, Languages
 } from 'lucide-react';
 
@@ -13,20 +13,20 @@ const translations = {
   ar: {
     nav: { home: 'الرئيسية', features: 'المميزات', nations: 'الجنسيات', pricing: 'الباقات', order: 'اطلب الآن' },
     hero: [
-      { 
-        title: "راحةُ بالكِ تبدأ هنا.. نعتني ببيتكِ كأنه بيتنا", 
-        subtitle: "ننتقي لكِ الصفوة لضمان جودة الحياة وراحة عائلتكِ الدائمة، لتستمتعي بلحظاتكِ الثمينة بينما تتولى نُخبة كوادرنا مهام منزلكِ باحترافية ملكية.", 
-        tag: "نُخبة الاختيار" 
+      {
+        title: "راحةُ بالكِ تبدأ هنا.. نعتني ببيتكِ كأنه بيتنا",
+        subtitle: "ننتقي لكِ الصفوة لضمان جودة الحياة وراحة عائلتكِ الدائمة، لتستمتعي بلحظاتكِ الثمينة بينما تتولى نُخبة كوادرنا مهام منزلكِ باحترافية ملكية.",
+        tag: "نُخبة الاختيار"
       },
-      { 
-        title: "احترافية تتجاوز التوقعات.. كوادرنا واجهة للفخامة", 
-        subtitle: "كوادر مدربة بزي رسمي تضمن لكِ الانضباط والأداء المثالي، نلتزم بأقل مدة وصول في المملكة عبر إجراءات رسمية موثقة من مساند.", 
-        tag: "السرعة الذهبية" 
+      {
+        title: "احترافية تتجاوز التوقعات.. كوادرنا واجهة للفخامة",
+        subtitle: "كوادر مدربة بزي رسمي تضمن لكِ الانضباط والأداء المثالي، نلتزم بأقل مدة وصول في المملكة عبر إجراءات رسمية موثقة من مساند.",
+        tag: "السرعة الذهبية"
       },
-      { 
-        title: "بيتكِ يستحق الأفضل.. جودة تليقُ بمكانتكِ", 
-        subtitle: "حقوقكِ محفوظة بعقود رسمية تضمن لكِ الأمان والاحترافية الكاملة، ننتقي لكِ نُخبة من العاملات ذوات الكفاءة العالية لرعاية أدق تفاصيل منزلكِ.", 
-        tag: "ثقة مطلقة" 
+      {
+        title: "بيتكِ يستحق الأفضل.. جودة تليقُ بمكانتكِ",
+        subtitle: "حقوقكِ محفوظة بعقود رسمية تضمن لكِ الأمان والاحترافية الكاملة، ننتقي لكِ نُخبة من العاملات ذوات الكفاءة العالية لرعاية أدق تفاصيل منزلكِ.",
+        tag: "ثقة مطلقة"
       }
     ],
     stats: [
@@ -51,20 +51,20 @@ const translations = {
   en: {
     nav: { home: 'Home', features: 'Features', nations: 'Nationalities', pricing: 'Packages', order: 'Order Now' },
     hero: [
-      { 
-        title: "Your Peace of Mind is Our Priority", 
-        subtitle: "We select the best to ensure quality of life and permanent comfort for your family, letting you enjoy precious moments with royal care.", 
-        tag: "Elite Selection" 
+      {
+        title: "Your Peace of Mind is Our Priority",
+        subtitle: "We select the best to ensure quality of life and permanent comfort for your family, letting you enjoy precious moments with royal care.",
+        tag: "Elite Selection"
       },
-      { 
-        title: "Professionalism Redefined.. Staff with Pride", 
-        subtitle: "Uniformed, highly trained staff ensuring discipline and record-breaking arrival times in the Kingdom via Musaned.", 
-        tag: "Golden Speed" 
+      {
+        title: "Professionalism Redefined.. Staff with Pride",
+        subtitle: "Uniformed, highly trained staff ensuring discipline and record-breaking arrival times in the Kingdom via Musaned.",
+        tag: "Golden Speed"
       },
-      { 
-        title: "Your Home Deserves the Best Quality", 
-        subtitle: "Official contracts ensuring safety and full professionalism, selecting only high-efficiency staff to care for your home's details.", 
-        tag: "Absolute Trust" 
+      {
+        title: "Your Home Deserves the Best Quality",
+        subtitle: "Official contracts ensuring safety and full professionalism, selecting only high-efficiency staff to care for your home's details.",
+        tag: "Absolute Trust"
       }
     ],
     stats: [
@@ -122,7 +122,7 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
           </span>
         </div>
       </div>
-      
+
       <div className="hidden lg:flex items-center gap-8">
         {['home', 'features', 'nations', 'pricing'].map((key) => (
           <a key={key} href={`#${key === 'home' ? '' : key}`} className={`font-bold text-sm transition-all relative group ${scrolled ? 'text-slate-700 hover:text-amber-600' : 'text-white/90 hover:text-white'}`}>
@@ -130,7 +130,7 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
             <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-amber-600 transition-all group-hover:w-full"></span>
           </a>
         ))}
-        
+
         <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`flex items-center gap-2 font-bold text-xs px-3 py-1.5 rounded-full border transition-all ${scrolled ? 'border-slate-200 text-slate-700 hover:bg-slate-50' : 'border-white/20 text-white hover:bg-white/10'}`}>
           <Globe size={14} />
           {lang === 'ar' ? 'English' : 'العربية'}
@@ -142,12 +142,12 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
       </div>
 
       <div className="lg:hidden flex items-center gap-4">
-         <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`p-2 rounded-lg ${scrolled ? 'text-slate-900' : 'text-white'}`}>
-            <Languages size={20} />
-         </button>
-         <button className={`p-2 rounded-lg transition-all ${scrolled ? 'text-slate-900' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-           {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-         </button>
+        <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`p-2 rounded-lg ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+          <Languages size={20} />
+        </button>
+        <button className={`p-2 rounded-lg transition-all ${scrolled ? 'text-slate-900' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
     </div>
   </nav>
@@ -226,7 +226,7 @@ const App = () => {
 
   return (
     <div className={`min-h-screen bg-[#FDFBF7] font-sans selection:bg-amber-200 overflow-x-hidden ${lang === 'ar' ? 'text-right' : 'text-left'}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
-      
+
       <style>{`
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
@@ -236,15 +236,15 @@ const App = () => {
       `}</style>
 
       <Navbar lang={lang} setLang={setLang} scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} t={t} onOrderClick={() => handleOrderClick()} />
-      
+
       {/* Hero Section */}
       <section className="relative h-screen min-h-[650px] w-full overflow-hidden bg-slate-900 flex items-center justify-center">
         {slides.map((slide, index) => (
           <div key={index} className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
             <div className="absolute inset-0">
-                <img src={slide.image} alt="" className="w-full h-full object-cover" style={{ transform: index === currentSlide ? 'scale(1.05)' : 'scale(1)', transition: 'transform 10s linear' }} />
-                <div className="absolute inset-0 bg-black/40"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-slate-900/95"></div>
+              <img src={slide.image} alt="" className="w-full h-full object-cover" style={{ transform: index === currentSlide ? 'scale(1.05)' : 'scale(1)', transition: 'transform 10s linear' }} />
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-slate-900/95"></div>
             </div>
             <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center pt-24 pb-12 z-20 text-center">
               <div className="max-w-4xl space-y-6 md:space-y-8">
@@ -280,23 +280,28 @@ const App = () => {
       {/* Stats Section */}
       <section ref={statsRef} id="features" className={`py-16 md:py-24 bg-white z-30 px-6 reveal ${statsVisible ? 'visible' : ''}`}>
         <div className="max-w-7xl mx-auto text-center">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
-                {t.stats.map((stat, i) => {
-                  const icons = [<Users />, <Verified />, <Globe />, <Zap />];
-                  const colors = ["bg-amber-50 text-amber-600", "bg-blue-50 text-blue-600", "bg-sky-50 text-sky-600", "bg-rose-50 text-rose-500"];
-                  return (
-                    <div key={i} className={`space-y-4 group flex flex-col items-center`}>
-                        <div className={`w-12 h-12 md:w-16 md:h-16 ${colors[i]} rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center shadow-sm animate-float transition-all duration-700 group-hover:scale-110 group-hover:rotate-12`}>
-                            {React.cloneElement(icons[i], { className: "w-6 h-6 md:w-8 md:h-8" })}
-                        </div>
-                        <div className="space-y-1">
-                            <h4 className="text-xl md:text-3xl lg:text-4xl font-black text-slate-900 tracking-tighter tabular-nums group-hover:text-amber-600 transition-colors duration-500">{stat.value}</h4>
-                            <p className="text-slate-400 font-bold text-[8px] md:text-[9px] uppercase tracking-widest leading-relaxed">{stat.label}</p>
-                        </div>
-                    </div>
-                  );
-                })}
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
+            {t.stats.map((stat, i) => {
+              const icons = [<Users />, <Verified />, <Globe />, <Zap />];
+              const colors = ["bg-amber-50 text-amber-600", "bg-blue-50 text-blue-600", "bg-sky-50 text-sky-600", "bg-rose-50 text-rose-500"];
+              return (
+                <div key={i} className={`space-y-4 group flex flex-col items-center`}>
+                  <div className={`w-12 h-12 md:w-16 md:h-16 ${colors[i]} rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center shadow-sm animate-float transition-all duration-700 group-hover:scale-110 group-hover:rotate-12`}>
+                    {React.cloneElement(icons[i], { className: "w-6 h-6 md:w-8 md:h-8" })}
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="text-lg md:text-2xl lg:text-3xl font-black text-slate-900 tracking-tighter tabular-nums group-hover:text-amber-600 transition-colors duration-500">
+                      {stat.value}
+                    </h4>
+
+                    <p className="text-slate-400 font-bold text-[7px] md:text-[8px] uppercase tracking-widest leading-relaxed">
+                      {stat.label}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -309,8 +314,8 @@ const App = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[Search, ClipboardCheck, Truck].map((Icon, i) => (
-              <div key={i} className={`relative flex flex-col items-center p-10 md:p-14 rounded-[3.5rem] bg-white transition-all duration-700 reveal delay-${i+1} ${stepsVisible ? 'visible' : ''} border border-transparent hover:border-amber-100 group shadow-sm hover:shadow-2xl animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
-                <div className={`absolute top-6 ${lang === 'ar' ? 'right-8' : 'left-8'} text-slate-200/90 font-black text-7xl md:text-8xl transition-colors group-hover:text-amber-200/50 -z-0 opacity-100`}>0{i+1}</div>
+              <div key={i} className={`relative flex flex-col items-center p-10 md:p-14 rounded-[3.5rem] bg-white transition-all duration-700 reveal delay-${i + 1} ${stepsVisible ? 'visible' : ''} border border-transparent hover:border-amber-100 group shadow-sm hover:shadow-2xl animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
+                <div className={`absolute top-6 ${lang === 'ar' ? 'right-8' : 'left-8'} text-slate-200/90 font-black text-7xl md:text-8xl transition-colors group-hover:text-amber-200/50 -z-0 opacity-100`}>0{i + 1}</div>
                 <div className="w-14 h-14 md:w-18 md:h-18 bg-slate-900 text-amber-500 rounded-[1.5rem] flex items-center justify-center shadow-2xl mb-8 transform transition-all group-hover:rotate-12 group-hover:bg-amber-600 group-hover:text-white z-10">
                   <Icon size={28} />
                 </div>
@@ -327,31 +332,31 @@ const App = () => {
       {/* Nationalities Section */}
       <section ref={nationsRef} id="nations" className="py-24 md:py-32 bg-white relative z-30 px-6">
         <div className="max-w-7xl mx-auto">
-            <div className={`space-y-4 mb-20 text-center reveal ${nationsVisible ? 'visible' : ''}`}>
-                <span className="text-amber-600 font-black text-[10px] uppercase tracking-[0.5em] block mb-2">{t.nations.tag}</span>
-                <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
-                <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full mt-6 shadow-sm"></div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {nationalities.map((item, i) => (
-                    <div key={i} className={`nation-card group relative h-[380px] md:h-[420px] rounded-[2rem] overflow-hidden reveal delay-${i+1} ${nationsVisible ? 'visible' : ''} transition-all duration-1000 shadow-lg cursor-pointer bg-slate-100`}>
-                        <img src={item.img} alt={item.country} className="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/10 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-700 z-10"></div>
-                        <div className="absolute bottom-8 right-6 left-6 z-20">
-                            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-3xl transform transition-all duration-700 translate-y-4 group-hover:translate-y-0 group-hover:bg-amber-600/20 group-hover:border-amber-400/30">
-                                <div className="flex flex-col items-center gap-1 text-center">
-                                    <span className="text-amber-400 font-black text-[9px] uppercase tracking-[0.3em] mb-1 opacity-90">{item.sub}</span>
-                                    <span className="text-white text-2xl md:text-3xl font-black tracking-tighter drop-shadow-2xl">{item.country}</span>
-                                    <div className="flex items-center gap-2 mt-3 text-white/60 text-[10px] font-bold transform opacity-0 group-hover:opacity-100 transition-all justify-center">
-                                        <span>{t.nations.explore}</span>
-                                        <ArrowRight size={12} className={lang === 'ar' ? 'rotate-180' : ''} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+          <div className={`space-y-4 mb-20 text-center reveal ${nationsVisible ? 'visible' : ''}`}>
+            <span className="text-amber-600 font-black text-[10px] uppercase tracking-[0.5em] block mb-2">{t.nations.tag}</span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
+            <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full mt-6 shadow-sm"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {nationalities.map((item, i) => (
+              <div key={i} className={`nation-card group relative h-[380px] md:h-[420px] rounded-[2rem] overflow-hidden reveal delay-${i + 1} ${nationsVisible ? 'visible' : ''} transition-all duration-1000 shadow-lg cursor-pointer bg-slate-100`}>
+                <img src={item.img} alt={item.country} className="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/10 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-700 z-10"></div>
+                <div className="absolute bottom-8 right-6 left-6 z-20">
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-3xl transform transition-all duration-700 translate-y-4 group-hover:translate-y-0 group-hover:bg-amber-600/20 group-hover:border-amber-400/30">
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <span className="text-amber-400 font-black text-[9px] uppercase tracking-[0.3em] mb-1 opacity-90">{item.sub}</span>
+                      <span className="text-white text-2xl md:text-3xl font-black tracking-tighter drop-shadow-2xl">{item.country}</span>
+                      <div className="flex items-center gap-2 mt-3 text-white/60 text-[10px] font-bold transform opacity-0 group-hover:opacity-100 transition-all justify-center">
+                        <span>{t.nations.explore}</span>
+                        <ArrowRight size={12} className={lang === 'ar' ? 'rotate-180' : ''} />
+                      </div>
                     </div>
-                ))}
-            </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -363,7 +368,7 @@ const App = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 max-w-7xl mx-auto">
           {packages.map((pkg, i) => (
-            <div key={i} className={`group relative flex flex-col p-12 md:p-14 rounded-[4rem] transition-all duration-700 reveal delay-${i+1} ${pricingVisible ? 'visible' : ''} ${pkg.popular ? 'bg-slate-900 text-white scale-100 lg:scale-105 shadow-2xl' : 'bg-white text-slate-900 border border-slate-100 shadow-sm hover:shadow-xl'}`}>
+            <div key={i} className={`group relative flex flex-col p-12 md:p-14 rounded-[4rem] transition-all duration-700 reveal delay-${i + 1} ${pricingVisible ? 'visible' : ''} ${pkg.popular ? 'bg-slate-900 text-white scale-100 lg:scale-105 shadow-2xl' : 'bg-white text-slate-900 border border-slate-100 shadow-sm hover:shadow-xl'}`}>
               {pkg.popular && <div className={`absolute top-0 ${lang === 'ar' ? 'right-1/2 translate-x-1/2' : 'left-1/2 -translate-x-1/2'} -translate-y-1/2 bg-amber-600 text-white px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl animate-pulse`}>{t.pricing.popular}</div>}
               <h3 className={`text-2xl md:text-3xl font-black mb-8 ${pkg.popular ? 'text-amber-400' : 'text-amber-600'}`}>{pkg.title}</h3>
               <div className="flex items-baseline gap-2 mb-10 text-right"><span className="text-4xl md:text-6xl font-black tracking-tighter tabular-nums">{pkg.price}</span><span className={`text-base md:text-xl font-bold ${pkg.popular ? 'text-slate-400' : 'text-slate-500'}`}>{t.pricing.currency}</span></div>
@@ -384,20 +389,20 @@ const App = () => {
       {/* Footer */}
       <footer className="bg-white py-24 border-t border-slate-100 relative z-40 text-center px-6">
         <div className="max-w-7xl mx-auto space-y-12">
-            <div className="flex flex-col items-center gap-4">
-                <div className="w-14 h-14 bg-amber-600 rounded-[1.8rem] flex items-center justify-center shadow-2xl">
-                  <Award className="text-white w-8 h-8 fill-white" />
-                </div>
-                <span className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}</span>
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-14 h-14 bg-amber-600 rounded-[1.8rem] flex items-center justify-center shadow-2xl">
+              <Award className="text-white w-8 h-8 fill-white" />
             </div>
-            <p className="text-slate-400 font-bold text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed text-center">{t.footer.desc}</p>
-            <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-8 text-center">
-              <p className="text-slate-300 text-[9px] md:text-xs font-black uppercase tracking-[0.5em]">© {new Date().getFullYear()} {t.footer.rights}</p>
-              <div className="flex gap-10 text-slate-400 text-[10px] md:text-sm font-black uppercase tracking-widest">
-                  <a href="#" className="hover:text-amber-600 transition-colors">{t.footer.about}</a>
-                  <a href="#" className="hover:text-amber-600 transition-colors">{t.footer.contact}</a>
-              </div>
+            <span className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}</span>
+          </div>
+          <p className="text-slate-400 font-bold text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed text-center">{t.footer.desc}</p>
+          <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-8 text-center">
+            <p className="text-slate-300 text-[9px] md:text-xs font-black uppercase tracking-[0.5em]">© {new Date().getFullYear()} {t.footer.rights}</p>
+            <div className="flex gap-10 text-slate-400 text-[10px] md:text-sm font-black uppercase tracking-widest">
+              <a href="#" className="hover:text-amber-600 transition-colors">{t.footer.about}</a>
+              <a href="#" className="hover:text-amber-600 transition-colors">{t.footer.contact}</a>
             </div>
+          </div>
         </div>
       </footer>
 
@@ -407,27 +412,27 @@ const App = () => {
           <div className="bg-white w-full max-w-xl rounded-[3rem] p-10 md:p-16 shadow-2xl relative overflow-y-auto max-h-[90vh] animate-in zoom-in duration-500">
             <button onClick={() => setShowModal(false)} className={`absolute top-8 ${lang === 'ar' ? 'left-8' : 'right-8'} text-slate-400 hover:text-slate-900 p-2 hover:rotate-90 transition-all`}><X size={28} /></button>
             <div className="space-y-10">
-                <div className="text-center space-y-4">
-                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter">{t.modal.title}</h3>
-                  <p className="text-slate-500 text-lg font-bold italic">{t.modal.package}: <span className="text-amber-600">{selectedPackage?.title}</span></p>
+              <div className="text-center space-y-4">
+                <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter">{t.modal.title}</h3>
+                <p className="text-slate-500 text-lg font-bold italic">{t.modal.package}: <span className="text-amber-600">{selectedPackage?.title}</span></p>
+              </div>
+              <form onSubmit={sendToWhatsApp} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-[12px] font-black text-slate-400 uppercase tracking-widest">{t.modal.name}</label>
+                  <div className="relative">
+                    <User className={`absolute ${lang === 'ar' ? 'right-5' : 'left-5'} top-1/2 -translate-y-1/2 text-slate-300 w-6 h-6`} />
+                    <input required type="text" placeholder={t.modal.namePlaceholder} className={`w-full bg-[#FDFBF7] border-2 border-transparent rounded-2xl py-5 md:py-6 ${lang === 'ar' ? 'pr-14' : 'pl-14'} focus:border-amber-600 focus:bg-white outline-none font-bold text-lg md:text-xl transition-all`} value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                  </div>
                 </div>
-                <form onSubmit={sendToWhatsApp} className="space-y-6">
-                    <div className="space-y-2">
-                        <label className="text-[12px] font-black text-slate-400 uppercase tracking-widest">{t.modal.name}</label>
-                        <div className="relative">
-                            <User className={`absolute ${lang === 'ar' ? 'right-5' : 'left-5'} top-1/2 -translate-y-1/2 text-slate-300 w-6 h-6`} />
-                            <input required type="text" placeholder={t.modal.namePlaceholder} className={`w-full bg-[#FDFBF7] border-2 border-transparent rounded-2xl py-5 md:py-6 ${lang === 'ar' ? 'pr-14' : 'pl-14'} focus:border-amber-600 focus:bg-white outline-none font-bold text-lg md:text-xl transition-all`} value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
-                        </div>
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-[12px] font-black text-slate-400 uppercase tracking-widest">{t.modal.city}</label>
-                        <div className="relative">
-                            <MapPin className={`absolute ${lang === 'ar' ? 'right-5' : 'left-5'} top-1/2 -translate-y-1/2 text-slate-300 w-6 h-6`} />
-                            <input required type="text" placeholder={t.modal.cityPlaceholder} className={`w-full bg-[#FDFBF7] border-2 border-transparent rounded-2xl py-5 md:py-6 ${lang === 'ar' ? 'pr-14' : 'pl-14'} focus:border-amber-600 focus:bg-white outline-none font-bold text-lg md:text-xl transition-all`} value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} />
-                        </div>
-                    </div>
-                    <button type="submit" className="w-full bg-slate-900 text-white py-6 md:py-8 rounded-full font-black text-xl md:text-2xl hover:bg-amber-600 shadow-2xl transition-all flex items-center justify-center gap-4 md:gap-6 mt-8 transform hover:-translate-y-2 active:scale-95">{t.modal.confirm} <Send className={`w-6 h-6 ${lang === 'ar' ? 'rotate-180' : ''}`} /></button>
-                </form>
+                <div className="space-y-2">
+                  <label className="text-[12px] font-black text-slate-400 uppercase tracking-widest">{t.modal.city}</label>
+                  <div className="relative">
+                    <MapPin className={`absolute ${lang === 'ar' ? 'right-5' : 'left-5'} top-1/2 -translate-y-1/2 text-slate-300 w-6 h-6`} />
+                    <input required type="text" placeholder={t.modal.cityPlaceholder} className={`w-full bg-[#FDFBF7] border-2 border-transparent rounded-2xl py-5 md:py-6 ${lang === 'ar' ? 'pr-14' : 'pl-14'} focus:border-amber-600 focus:bg-white outline-none font-bold text-lg md:text-xl transition-all`} value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
+                  </div>
+                </div>
+                <button type="submit" className="w-full bg-slate-900 text-white py-6 md:py-8 rounded-full font-black text-xl md:text-2xl hover:bg-amber-600 shadow-2xl transition-all flex items-center justify-center gap-4 md:gap-6 mt-8 transform hover:-translate-y-2 active:scale-95">{t.modal.confirm} <Send className={`w-6 h-6 ${lang === 'ar' ? 'rotate-180' : ''}`} /></button>
+              </form>
             </div>
           </div>
         </div>
