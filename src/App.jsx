@@ -45,7 +45,11 @@ const translations = {
     },
     nations: { tag: "نطاق عملنا العالمي", title: "جنسيات ننتقيها لكِ بعناية", explore: "استكشاف السير الذاتية" },
     pricing: { title: "باقات الايجار الشهري", subtitle: "باقات لاستقدام عماله منزليه صُممت لتمنحكِ الراحة والرفاهية المطلقة.", currency: "ريال", popular: "الأكثر طلباً", book: "حجز الطلب الآن" },
-    modal: { title: "بدء طلب استقدام عماله منزليه", package: "نُخبة", name: "الاسم بالكامل", namePlaceholder: "أدخل اسمك", city: "المدينة", cityPlaceholder: "مثلاً: الرياض", confirm: "تأكيد الطلب واتساب" },
+    modal: {
+      title: "بدء طلب استقدام عماله منزليه", package: "نُخبة", name: "الاسم بالكامل", namePlaceholder: "أدخل اسمك", city: "المدينة", cityPlaceholder: "مثلاً: الرياض", serviceType: "نوع الخدمة",
+      rent: "إيجار",
+      recruitment: "استقدام", confirm: "تأكيد الطلب واتساب"
+    },
     footer: { desc: "نصنعُ الفرق في كل منزل سعودي برؤية ملكية تتجاوز التوقعات عبر نُخبة الكوادر.", rights: "جميع الحقوق محفوظة - نُخبة الكوادر", about: "عن المؤسسة", contact: "اتصلي بنا" }
   },
   en: {
@@ -83,7 +87,11 @@ const translations = {
     },
     nations: { tag: "Global Reach", title: "Selected Nationalities", explore: "Explore CVs" },
     pricing: { title: "Monthly Rental Packages", subtitle: "Packages designed for your absolute comfort and luxury.", currency: "SAR", popular: "Popular", book: "Book Now" },
-    modal: { title: "Start Order", package: "Elite", name: "Full Name", namePlaceholder: "Enter name", city: "City", cityPlaceholder: "e.g. Riyadh", confirm: "Confirm WhatsApp" },
+    modal: {
+      title: "Start Order", package: "Elite", name: "Full Name", namePlaceholder: "Enter name", city: "City", cityPlaceholder: "e.g. Riyadh", serviceType: "Service Type",
+      rent: "Rent",
+      recruitment: "Recruitment", confirm: "Confirm WhatsApp"
+    },
     footer: { desc: "Making a difference in Saudi homes with a royal vision.", rights: "All Rights Reserved - Nukhba", about: "About", contact: "Contact" }
   }
 };
@@ -183,7 +191,7 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [formData, setFormData] = useState({ name: '', city: '' });
+  const [formData, setFormData] = useState({ name: '', city: '', serviceType: 'استقدام' });
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const t = translations[lang];
@@ -239,7 +247,7 @@ const App = () => {
 
   const sendToWhatsApp = (e) => {
     e.preventDefault();
-    const msg = `*Order from ${lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}*%0A%0A*Name:* ${formData.name}%0A*City:* ${formData.city}%0A*Package:* ${selectedPackage?.title}`;
+    const msg = `*Order from ${lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}*%0A%0A*Name:* ${formData.name}%0A*City:* ${formData.city}%0A*Service:* ${formData.serviceType}%0A*Package:* ${selectedPackage?.title}`;
     window.location.href = `https://wa.me/${phoneNumber}?text=${msg}`;
     setShowModal(false);
   };
@@ -475,6 +483,20 @@ const App = () => {
                   <div className="relative">
                     <MapPin className={`absolute ${lang === 'ar' ? 'right-5' : 'left-5'} top-1/2 -translate-y-1/2 text-slate-300 w-6 h-6`} />
                     <input required type="text" placeholder={t.modal.cityPlaceholder} className={`w-full bg-[#FDFBF7] border-2 border-transparent rounded-2xl py-5 md:py-6 ${lang === 'ar' ? 'pr-14' : 'pl-14'} focus:border-amber-600 focus:bg-white outline-none font-bold text-lg md:text-xl transition-all`} value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[12px] font-black text-slate-400 uppercase tracking-widest">{t.modal.serviceType}</label>
+                  <div className="relative">
+                    <ClipboardCheck className={`absolute ${lang === 'ar' ? 'right-5' : 'left-5'} top-1/2 -translate-y-1/2 text-slate-300 w-6 h-6 z-10`} />
+                    <select
+                      className={`w-full bg-[#FDFBF7] border-2 border-transparent rounded-2xl py-5 md:py-6 ${lang === 'ar' ? 'pr-14' : 'pl-14'} focus:border-amber-600 focus:bg-white outline-none font-bold text-lg md:text-xl transition-all appearance-none cursor-pointer`}
+                      value={formData.serviceType}
+                      onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                    >
+                      <option value={lang === 'ar' ? "استقدام" : "Recruitment"}>{t.modal.recruitment}</option>
+                      <option value={lang === 'ar' ? "إيجار" : "Rent"}>{t.modal.rent}</option>
+                    </select>
                   </div>
                 </div>
                 <button type="submit" className="w-full bg-slate-900 text-white py-6 md:py-8 rounded-full font-black text-xl md:text-2xl hover:bg-amber-600 shadow-2xl transition-all flex items-center justify-center gap-4 md:gap-6 mt-8 transform hover:-translate-y-2 active:scale-95">{t.modal.confirm} <Send className={`w-6 h-6 ${lang === 'ar' ? 'rotate-180' : ''}`} /></button>
