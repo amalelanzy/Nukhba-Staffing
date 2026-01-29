@@ -30,22 +30,22 @@ const translations = {
       }
     ],
     stats: [
-      { label: "تدريب مكثف وأداء احترافي", value: "كوادر مؤهلة" },
+      { label: "تدريب مكثف وأداء احترافي", value: "كوادر مدربه" },
       { label: "ضمان كامل عبر منصة مساند", value: "عقود رسمية" },
       { label: "دعم مستمر بعد استلام العاملة", value: "متابعة دورية" },
       { label: "التزام بالمواعيد المحددة", value: "سرعة وصول" }
     ],
     steps: {
-      title: "رحلتكِ معنا", subtitle: "بثلاث خطوات استثنائية",
+      title: "بثلاث خطوات", subtitle: "استقدام عماله منزليه",
       items: [
         { title: "اختيار الكادر", desc: "نستعرض معكِ أفضل السير الذاتية المختارة بعناية لتناسب منزلكِ." },
-        { title: "توثيق العقد", desc: "إجراءات قانونية فورية عبر منصة مساند لضمان حقوقكِ وحقوقنا." },
+        { title: "توثيق العقود", desc: "إجراءات قانونية فورية عبر منصة مساند لضمان حقوقكِ وحقوقنا." },
         { title: "الوصول السريع", desc: "متابعة دقيقة حتى وصول العاملة لباب منزلكِ في وقت قياسي." }
       ]
     },
     nations: { tag: "نطاق عملنا العالمي", title: "جنسيات ننتقيها لكِ بعناية", explore: "استكشاف السير الذاتية" },
-    pricing: { title: "باقات النُخبة", subtitle: "باقات صُممت لتمنحكِ الراحة والرفاهية المطلقة.", currency: "ريال", popular: "الأكثر طلباً", book: "حجز الطلب الآن" },
-    modal: { title: "بدء طلب الاستقدام", package: "نُخبة", name: "الاسم بالكامل", namePlaceholder: "أدخل اسمك", city: "المدينة", cityPlaceholder: "مثلاً: الرياض", confirm: "تأكيد الطلب واتساب" },
+    pricing: { title: "باقات الايجار الشهري", subtitle: "باقات لاستقدام عماله منزليه صُممت لتمنحكِ الراحة والرفاهية المطلقة.", currency: "ريال", popular: "الأكثر طلباً", book: "حجز الطلب الآن" },
+    modal: { title: "بدء طلب استقدام عماله منزليه", package: "نُخبة", name: "الاسم بالكامل", namePlaceholder: "أدخل اسمك", city: "المدينة", cityPlaceholder: "مثلاً: الرياض", confirm: "تأكيد الطلب واتساب" },
     footer: { desc: "نصنعُ الفرق في كل منزل سعودي برؤية ملكية تتجاوز التوقعات عبر نُخبة الكوادر.", rights: "جميع الحقوق محفوظة - نُخبة الكوادر", about: "عن المؤسسة", contact: "اتصلي بنا" }
   },
   en: {
@@ -68,13 +68,13 @@ const translations = {
       }
     ],
     stats: [
-      { label: "Intensive Training & Professionalism", value: "Qualified Staff" },
+      { label: "Intensive Training & Professionalism", value: "Trained Staff" },
       { label: "Full Warranty via Musaned", value: "Official Contracts" },
       { label: "Support After Staff Delivery", value: "Regular Follow-up" },
       { label: "Commitment to Scheduled Times", value: "Fast Arrival" }
     ],
     steps: {
-      title: "Your Journey", subtitle: "Three Simple Steps",
+      title: "In 3 Simple Steps", subtitle: "Domestic Staff Recruitment",
       items: [
         { title: "Staff Selection", desc: "We review the best selected CVs to suit your home." },
         { title: "Documentation", desc: "Immediate legal procedures via Musaned platform." },
@@ -82,7 +82,7 @@ const translations = {
       ]
     },
     nations: { tag: "Global Reach", title: "Selected Nationalities", explore: "Explore CVs" },
-    pricing: { title: "Elite Packages", subtitle: "Packages designed for your absolute comfort and luxury.", currency: "SAR", popular: "Popular", book: "Book Now" },
+    pricing: { title: "Monthly Rental Packages", subtitle: "Packages designed for your absolute comfort and luxury.", currency: "SAR", popular: "Popular", book: "Book Now" },
     modal: { title: "Start Order", package: "Elite", name: "Full Name", namePlaceholder: "Enter name", city: "City", cityPlaceholder: "e.g. Riyadh", confirm: "Confirm WhatsApp" },
     footer: { desc: "Making a difference in Saudi homes with a royal vision.", rights: "All Rights Reserved - Nukhba", about: "About", contact: "Contact" }
   }
@@ -208,7 +208,7 @@ const App = () => {
   ], [lang]);
 
   useEffect(() => {
-    document.title = lang === 'ar' ? "نُخبة الكوادر | الفخامة في الاستقدام" : "Nukhba Staffing | Luxury Recruitment";
+    document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه" : "Nukhba Staffing | Luxury Recruitment";
     const svgIcon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>`;
     let favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
@@ -437,6 +437,9 @@ const App = () => {
               <Award className="text-white w-8 h-8 fill-white" />
             </div>
             <span className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}</span>
+            <p className="text-slate-400 font-bold text-[10px] md:text-[12px] uppercase tracking-widest leading-relaxed">
+              {lang === 'ar' ? 'لاستقدام عماله منزليه' : 'For domestic Staff Recruitment'}
+            </p>
           </div>
           <p className="text-slate-400 font-bold text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed text-center">{t.footer.desc}</p>
           <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-8 text-center">
