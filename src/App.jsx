@@ -14,7 +14,7 @@ const translations = {
     nav: { home: 'الرئيسية', features: 'المميزات', nations: 'الجنسيات', pricing: 'الباقات', order: 'اطلب الآن' },
     hero: [
       {
-        title: "راحةُ بالكِ تبدأ هنا.. نعتني ببيتكِ كأنه بيتنا",
+        title: "استقدام عمالة منزلية.. راحةُ بالكِ تبدأ هنا",
         subtitle: "ننتقي لكِ الصفوة لضمان جودة الحياة وراحة عائلتكِ الدائمة، لتستمتعي بلحظاتكِ الثمينة بينما تتولى نُخبة كوادرنا مهام منزلكِ باحترافية ملكية.",
         tag: "نُخبة الاختيار"
       },
@@ -52,7 +52,7 @@ const translations = {
     nav: { home: 'Home', features: 'Features', nations: 'Nationalities', pricing: 'Packages', order: 'Order Now' },
     hero: [
       {
-        title: "Your Peace of Mind is Our Priority",
+        title: "Domestic Worker Recruitment.. Your Peace of Mind Starts Here",
         subtitle: "We select the best to ensure quality of life and permanent comfort for your family, letting you enjoy precious moments with royal care.",
         tag: "Elite Selection"
       },
@@ -191,8 +191,8 @@ const App = () => {
   const nationalities = useMemo(() => [
     { country: lang === 'ar' ? "الفلبين" : "Philippines", sub: "Philippines", img: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=800&auto=format&fit=crop" },
     { country: lang === 'ar' ? "إثيوبيا" : "Ethiopia", sub: "Ethiopia", img: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=600&auto=format&fit=crop" },
-    { country: lang === 'ar' ? "أوغندا" : "Uganda", sub: "Uganda", img: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=600&auto=format&fit=crop" },
     { country: lang === 'ar' ? "كينيا" : "Kenya", sub: "Kenya", img: "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?q=80&w=600&auto=format&fit=crop" },
+    { country: lang === 'ar' ? "أوغندا" : "Uganda", sub: "Uganda", img: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=600&auto=format&fit=crop" },
     { country: lang === 'ar' ? "بنجلاديش" : "Bangladesh", sub: "Bangladesh", img: "https://images.unsplash.com/photo-1540611025311-01df3cef54b5?q=80&w=600&auto=format&fit=crop" },
   ], [lang]);
 
