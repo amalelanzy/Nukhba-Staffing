@@ -278,7 +278,7 @@ const App = () => {
                 <h1 className={`text-2xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tighter drop-shadow-2xl px-4 ${lang === 'en' ? 'lg:text-[3.8rem]' : ''}`} style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.2s backwards' : '' }}>
                   {slide.title}
                 </h1>
-                <p className="text-base md:text-xl lg:text-2xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed px-4 opacity-90" style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.4s backwards' : '' }}>
+                <p className="text-base md:text-xl lg:text-2xl text-white/95 font-medium max-w-[280px] md:max-w-3xl mx-auto leading-relaxed px-4 opacity-90" style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.4s backwards' : '' }}>
                   {slide.subtitle}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-5 md:gap-8 justify-center pt-8" style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.6s backwards' : '' }}>
