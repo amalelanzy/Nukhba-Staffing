@@ -107,14 +107,14 @@ const useReveal = () => {
 };
 
 const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrderClick }) => (
-  <nav className={`fixed w-full z-[200] transition-all duration-700 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-2 md:py-3' : 'bg-transparent py-4 md:py-8'}`}>
+  <nav className={`fixed w-full z-[200] transition-all duration-700 ${scrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-lg py-2 md:py-3' : 'bg-transparent py-4 md:py-8'}`}>
     <div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center">
       <div className={`flex items-center gap-3 ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
         <div className="w-9 h-9 md:w-10 md:h-10 bg-amber-600 rounded-xl flex items-center justify-center shadow-lg transform transition-all hover:rotate-12 shrink-0">
           <Award className="text-white w-5 h-5 md:w-6 md:h-6" />
         </div>
         <div className={`flex flex-col leading-none ${lang === 'ar' ? 'items-end' : 'items-start'}`}>
-          <span className={`text-base md:text-xl font-black tracking-tighter transition-colors duration-500 ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+          <span className={`text-base md:text-xl font-black tracking-tighter transition-colors duration-500 ${scrolled || isMenuOpen ? 'text-slate-900' : 'text-white'}`}>
             {lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}
           </span>
           <span className={`text-[7px] md:text-[9px] text-amber-500 font-black uppercase tracking-[0.1em] mt-1 opacity-95`}>
@@ -123,6 +123,7 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
         </div>
       </div>
 
+      {/* Desktop Menu */}
       <div className="hidden lg:flex items-center gap-8">
         {['home', 'features', 'nations', 'pricing'].map((key) => (
           <a key={key} href={`#${key === 'home' ? '' : key}`} className={`font-bold text-sm transition-all relative group ${scrolled ? 'text-slate-700 hover:text-amber-600' : 'text-white/90 hover:text-white'}`}>
@@ -141,12 +142,35 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
         </button>
       </div>
 
+      {/* Mobile Toggle Icons */}
       <div className="lg:hidden flex items-center gap-4">
-        <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`p-2 rounded-lg ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+        <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`p-2 rounded-lg ${scrolled || isMenuOpen ? 'text-slate-900' : 'text-white'}`}>
           <Languages size={20} />
         </button>
-        <button className={`p-2 rounded-lg transition-all ${scrolled ? 'text-slate-900' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        <button className={`p-2 rounded-lg transition-all ${scrolled || isMenuOpen ? 'text-slate-900' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
+      </div>
+    </div>
+
+    {/* Mobile Menu Content (الجزء الذي كان ناقصاً) */}
+    <div className={`lg:hidden overflow-hidden transition-all duration-500 bg-white shadow-xl ${isMenuOpen ? 'max-h-screen opacity-100 border-t border-slate-100' : 'max-h-0 opacity-0'}`}>
+      <div className="px-6 py-8 flex flex-col gap-6 text-center">
+        {['home', 'features', 'nations', 'pricing'].map((key) => (
+          <a 
+            key={key} 
+            href={`#${key === 'home' ? '' : key}`} 
+            onClick={() => setIsMenuOpen(false)}
+            className="text-slate-800 font-black text-lg hover:text-amber-600 transition-colors"
+          >
+            {t.nav[key]}
+          </a>
+        ))}
+        <button 
+          onClick={() => { onOrderClick(); setIsMenuOpen(false); }} 
+          className="bg-amber-600 text-white py-4 rounded-2xl font-black text-lg shadow-lg"
+        >
+          {t.nav.order}
         </button>
       </div>
     </div>
