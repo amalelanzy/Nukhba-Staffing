@@ -363,22 +363,40 @@ const App = () => {
       {/* Pricing Section */}
       <section ref={pricingRef} id="pricing" className="py-24 md:py-32 bg-[#FDFBF7] relative z-40 px-6">
         <div className={`max-w-7xl mx-auto px-6 text-center space-y-3 mb-16 reveal ${pricingVisible ? 'visible' : ''}`}>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">{t.pricing.title}</h2>
-          <p className="text-slate-500 text-sm md:text-lg font-medium max-w-3xl mx-auto leading-relaxed text-center">{t.pricing.subtitle}</p>
+          {/* تصغير عنوان القسم */}
+          <h2 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight">{t.pricing.title}</h2>
+          <p className="text-slate-500 text-xs md:text-base font-medium max-w-3xl mx-auto leading-relaxed text-center">{t.pricing.subtitle}</p>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 max-w-7xl mx-auto">
           {packages.map((pkg, i) => (
-            <div key={i} className={`group relative flex flex-col p-12 md:p-14 rounded-[4rem] transition-all duration-700 reveal delay-${i + 1} ${pricingVisible ? 'visible' : ''} ${pkg.popular ? 'bg-slate-900 text-white scale-100 lg:scale-105 shadow-2xl' : 'bg-white text-slate-900 border border-slate-100 shadow-sm hover:shadow-xl'}`}>
-              {pkg.popular && <div className={`absolute top-0 ${lang === 'ar' ? 'right-1/2 translate-x-1/2' : 'left-1/2 -translate-x-1/2'} -translate-y-1/2 bg-amber-600 text-white px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl animate-pulse`}>{t.pricing.popular}</div>}
-              <h3 className={`text-2xl md:text-3xl font-black mb-8 ${pkg.popular ? 'text-amber-400' : 'text-amber-600'}`}>{pkg.title}</h3>
-              <div className="flex items-baseline gap-2 mb-10 text-right"><span className="text-4xl md:text-6xl font-black tracking-tighter tabular-nums">{pkg.price}</span><span className={`text-base md:text-xl font-bold ${pkg.popular ? 'text-slate-400' : 'text-slate-500'}`}>{t.pricing.currency}</span></div>
-              <div className={`h-px w-full mb-10 ${pkg.popular ? 'bg-white/10' : 'bg-amber-100'}`}></div>
-              <ul className="space-y-6 mb-16 flex-grow">
+            <div key={i} className={`group relative flex flex-col p-10 md:p-12 rounded-[3rem] transition-all duration-700 reveal delay-${i + 1} ${pricingVisible ? 'visible' : ''} ${pkg.popular ? 'bg-slate-900 text-white scale-100 lg:scale-105 shadow-2xl' : 'bg-white text-slate-900 border border-slate-100 shadow-sm hover:shadow-xl'}`}>
+
+              {/* كلمة "الأكثر طلباً" */}
+              {pkg.popular && <div className={`absolute top-0 ${lang === 'ar' ? 'right-1/2 translate-x-1/2' : 'left-1/2 -translate-x-1/2'} -translate-y-1/2 bg-amber-600 text-white px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl animate-pulse`}>{t.pricing.popular}</div>}
+
+              {/* اسم الباقة */}
+              <h3 className={`text-xl md:text-2xl font-black mb-6 ${pkg.popular ? 'text-amber-400' : 'text-amber-600'}`}>{pkg.title}</h3>
+
+              {/* السعر */}
+              <div className="flex items-baseline gap-2 mb-8 text-right">
+                <span className="text-3xl md:text-5xl font-black tracking-tighter tabular-nums">{pkg.price}</span>
+                <span className={`text-sm md:text-lg font-bold ${pkg.popular ? 'text-slate-400' : 'text-slate-500'}`}>{t.pricing.currency}</span>
+              </div>
+
+              <div className={`h-px w-full mb-8 ${pkg.popular ? 'bg-white/10' : 'bg-amber-100'}`}></div>
+
+              {/* قائمة المميزات */}
+              <ul className="space-y-4 mb-12 flex-grow">
                 {pkg.features.map((f, idx) => (
-                  <li key={idx} className="flex items-center gap-4 font-bold text-base transition-transform group-hover:translate-x-[-5px]"><CheckCircle2 className={`w-5 h-5 md:w-6 md:h-6 shrink-0 ${pkg.popular ? 'text-amber-500' : 'text-amber-600'}`} /> {f}</li>
+                  <li key={idx} className="flex items-center gap-3 font-bold text-sm md:text-base transition-transform group-hover:translate-x-[-5px]">
+                    <CheckCircle2 className={`w-4 h-4 md:w-5 md:h-5 shrink-0 ${pkg.popular ? 'text-amber-500' : 'text-amber-600'}`} /> {f}
+                  </li>
                 ))}
               </ul>
-              <button onClick={() => handleOrderClick(pkg)} className={`w-full py-5 md:py-7 px-10 rounded-full font-black text-xl md:text-3xl transition-all transform hover:scale-105 active:scale-95 shadow-xl ${pkg.popular ? 'bg-amber-600 text-white hover:bg-amber-700' : 'bg-slate-900 text-white hover:bg-amber-600'}`}>
+
+              {/* زر الحجز */}
+              <button onClick={() => handleOrderClick(pkg)} className={`w-full py-4 md:py-5 px-8 rounded-full font-black text-lg md:text-2xl transition-all transform hover:scale-105 active:scale-95 shadow-xl ${pkg.popular ? 'bg-amber-600 text-white hover:bg-amber-700' : 'bg-slate-900 text-white hover:bg-amber-600'}`}>
                 {t.pricing.book}
               </button>
             </div>
