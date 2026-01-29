@@ -157,17 +157,17 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
     <div className={`lg:hidden overflow-hidden transition-all duration-500 bg-white shadow-xl ${isMenuOpen ? 'max-h-screen opacity-100 border-t border-slate-100' : 'max-h-0 opacity-0'}`}>
       <div className="px-6 py-8 flex flex-col gap-6 text-center">
         {['home', 'features', 'nations', 'pricing'].map((key) => (
-          <a 
-            key={key} 
-            href={`#${key === 'home' ? '' : key}`} 
+          <a
+            key={key}
+            href={`#${key === 'home' ? '' : key}`}
             onClick={() => setIsMenuOpen(false)}
             className="text-slate-800 font-black text-lg hover:text-amber-600 transition-colors"
           >
             {t.nav[key]}
           </a>
         ))}
-        <button 
-          onClick={() => { onOrderClick(); setIsMenuOpen(false); }} 
+        <button
+          onClick={() => { onOrderClick(); setIsMenuOpen(false); }}
           className="bg-amber-600 text-white py-4 rounded-2xl font-black text-lg shadow-lg"
         >
           {t.nav.order}
@@ -319,7 +319,7 @@ const App = () => {
                       {stat.value}
                     </h4>
 
-                    <p className="text-slate-400 font-bold text-[7px] md:text-[8px] uppercase tracking-widest leading-relaxed">
+                    <p className="text-slate-400 font-bold text-xs md:text-sm uppercase tracking-widest leading-relaxed">
                       {stat.label}
                     </p>
                   </div>
