@@ -189,6 +189,7 @@ const App = () => {
   const t = translations[lang];
   const phoneNumber = "966532441576";
   const nationalities = useMemo(() => [
+    { country: lang === 'ar' ? "الفلبين" : "Philippines", sub: "Philippines", img: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=800&auto=format&fit=crop" },
     { country: lang === 'ar' ? "إثيوبيا" : "Ethiopia", sub: "Ethiopia", img: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=600&auto=format&fit=crop" },
     { country: lang === 'ar' ? "أوغندا" : "Uganda", sub: "Uganda", img: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=600&auto=format&fit=crop" },
     { country: lang === 'ar' ? "كينيا" : "Kenya", sub: "Kenya", img: "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?q=80&w=600&auto=format&fit=crop" },
@@ -361,7 +362,7 @@ const App = () => {
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
             <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full mt-6 shadow-sm"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {nationalities.map((item, i) => (
               <div key={i} className={`nation-card group relative h-[380px] md:h-[420px] rounded-[2rem] overflow-hidden reveal delay-${i + 1} ${nationsVisible ? 'visible' : ''} transition-all duration-1000 shadow-lg cursor-pointer bg-slate-100`}>
                 <img src={item.img} alt={item.country} className="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110" />
