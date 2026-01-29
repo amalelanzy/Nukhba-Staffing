@@ -144,7 +144,7 @@ const App = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const t = translations[lang];
-  const phoneNumber = "966559400095";
+  const phoneNumber = "966532441576";
 
   // تعريف الجنسيات هنا لضمان عملها
   const nationalities = useMemo(() => [
