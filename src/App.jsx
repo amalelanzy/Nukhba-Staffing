@@ -275,7 +275,7 @@ const App = () => {
                 <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-amber-600/90 text-white font-bold text-[10px] md:text-xs uppercase tracking-widest shadow-2xl mx-auto backdrop-blur-md" style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease' : '' }}>
                   <Award className="w-4 h-4" /> {slide.tag}
                 </div>
-                <h1 className={`text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tighter drop-shadow-2xl px-4 ${lang === 'en' ? 'lg:text-[3.8rem]' : ''}`} style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.2s backwards' : '' }}>
+                <h1 className={`text-2xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tighter drop-shadow-2xl px-4 ${lang === 'en' ? 'lg:text-[3.8rem]' : ''}`} style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.2s backwards' : '' }}>
                   {slide.title}
                 </h1>
                 <p className="text-base md:text-xl lg:text-2xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed px-4 opacity-90" style={{ animation: index === currentSlide ? 'fadeInUp 0.8s ease 0.4s backwards' : '' }}>
