@@ -343,11 +343,11 @@ const App = () => {
   <div className="max-w-7xl mx-auto">
     <div className={`mb-16 space-y-4 reveal ${stepsVisible ? 'visible' : ''}`}>
       {/* تكبير خط العنوان الصغير العلوي */}
-      <span className="text-amber-600 font-black text-xs md:text-sm uppercase tracking-[0.4em]">
-        {t.steps.title}
-      </span>
+      <span className="text-amber-600 font-black text-sm md:text-lg lg:text-xl uppercase tracking-[0.3em] block mb-2">
+  {t.steps.title}
+</span>
       {/* تكبير العنوان الرئيسي "بثلاث خطوات" */}
-      <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight">
+      <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
         {t.steps.subtitle}
       </h2>
     </div>
