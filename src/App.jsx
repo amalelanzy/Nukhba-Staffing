@@ -222,7 +222,7 @@ const App = () => {
   useEffect(() => {
     // تحديث عنوان الصفحة
     document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه" : "Nukhba Staffing | Luxury Recruitment";
-    
+
     // استعادة لوجو التميز في التابة (Favicon)
     const svgIcon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>`;
     let favicon = document.querySelector('link[rel="icon"]');
@@ -415,7 +415,9 @@ const App = () => {
       <section ref={pricingRef} id="pricing" className="py-24 md:py-32 bg-[#FDFBF7] relative z-40 px-6">
         <div className={`max-w-7xl mx-auto px-6 text-center space-y-3 mb-16 reveal ${pricingVisible ? 'visible' : ''}`}>
           <h2 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight">{t.pricing.title}</h2>
-          <p className="text-slate-500 text-xs md:text-base font-medium max-w-3xl mx-auto leading-relaxed text-center">{t.pricing.subtitle}</p>
+          <p className="text-slate-600 text-base md:text-xl lg:text-2xl font-semibold max-w-4xl mx-auto leading-relaxed text-center">
+            {t.pricing.subtitle}
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 max-w-7xl mx-auto">
           {packages.map((pkg, i) => (
@@ -446,10 +448,10 @@ const App = () => {
       <footer className={`bg-slate-900 text-white pt-24 pb-12 relative z-40 px-6 overflow-hidden ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
         {/* Background Accent */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent opacity-50"></div>
-        
+
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-20">
-            
+
             {/* Column 1: About & Branding */}
             <div className="md:col-span-5 space-y-8">
               <div className={`flex items-center gap-4 ${lang === 'ar' ? 'justify-start' : 'justify-start'}`}>
