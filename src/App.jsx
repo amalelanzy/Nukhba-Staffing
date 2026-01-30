@@ -220,7 +220,18 @@ const App = () => {
   ], [lang]);
 
   useEffect(() => {
+    // تحديث عنوان الصفحة
     document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه" : "Nukhba Staffing | Luxury Recruitment";
+    
+    // استعادة لوجو التميز في التابة (Favicon)
+    const svgIcon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>`;
+    let favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
+    }
+    favicon.href = svgIcon;
   }, [lang]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
