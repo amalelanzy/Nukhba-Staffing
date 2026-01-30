@@ -30,13 +30,13 @@ const translations = {
       }
     ],
     stats: [
-      { label: "تدريب مكثف وأداء احترافي", value: "كوادر مدربه" },
+      { label: "تدريب مكثف وأداء احترافي", value: "كوادر مدربة" },
       { label: "ضمان كامل عبر منصة مساند", value: "عقود رسمية" },
       { label: "دعم مستمر بعد استلام العاملة", value: "متابعة دورية" },
       { label: "التزام بالمواعيد المحددة", value: "سرعة وصول" }
     ],
     steps: {
-      title: "بثلاث خطوات", subtitle: "استقدام عماله منزليه",
+      title: "بثلاث خطوات", subtitle: "استقدام عمالة منزليه",
       items: [
         { title: "اختيار الكادر", desc: "نستعرض معكِ أفضل السير الذاتية المختارة بعناية لتناسب منزلكِ." },
         { title: "توثيق العقود", desc: "إجراءات قانونية فورية عبر منصة مساند لضمان حقوقكِ وحقوقنا." },
@@ -52,7 +52,7 @@ const translations = {
     },
     footer: {
       aboutTitle: "نُخبة الكوادر",
-      aboutDesc: "نحن في نُخبة الكوادر نصنعُ الفرق في كل منزل سعودي برؤية ملكية تتجاوز التوقعات، ملتزمون بأعلى معايير الجودة في استقدام الكوادر المنزلية.",
+      aboutDesc: "نحن في نُخبة الكوادر نصنعُ الفرق في كل منزل سعودي برؤية ملكية تتجاوز التوقعات، ملتزمون بأعلى معايير الجودة في استقدام الكوادر المنزلية .  ",
       quickLinks: "روابط سريعة",
       contactUs: "تواصل معنا",
       address: "المملكة العربية السعودية، الرياض",
@@ -101,7 +101,7 @@ const translations = {
     },
     footer: {
       aboutTitle: "Nukhba Staffing",
-      aboutDesc: "Making a difference in Saudi homes with a royal vision, we are committed to the highest standards of quality in domestic staff recruitment.",
+      aboutDesc: " Making a difference in Saudi homes with a royal vision, we are committed to the highest standards of quality in domestic staff recruitment.",
       quickLinks: "Quick Links",
       contactUs: "Contact Us",
       address: "Saudi Arabia, Riyadh",
@@ -221,7 +221,7 @@ const App = () => {
   ], [lang]);
 
   useEffect(() => {
-    document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه" : "Nukhba Staffing | Luxury Recruitment";
+    document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه " : "Nukhba Staffing | Luxury Recruitment";
     const svgIcon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>`;
     let favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
@@ -478,11 +478,11 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-3xl font-black tracking-tighter italic">{t.footer.aboutTitle}</h3>
-                  <p className="text-amber-500 font-bold text-[10px] uppercase tracking-widest">{lang === 'ar' ? 'نُخبة الاستقدام' : 'Elite Recruitment'}</p>
+                  <p className="text-amber-500 font-bold text-[10px] uppercase tracking-widest">{lang === 'ar' ? 'نُخبة الاستقدام ' : 'Elite Recruitment'}</p>
                 </div>
               </div>
               <p className="text-slate-400 font-medium leading-relaxed max-w-md text-lg italic">
-                "{t.footer.aboutDesc}"
+                " {t.footer.aboutDesc} "
               </p>
               <div className="flex gap-4">
                 {[Instagram, Twitter, Facebook].map((Icon, idx) => (
