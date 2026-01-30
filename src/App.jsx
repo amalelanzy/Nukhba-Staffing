@@ -190,6 +190,7 @@ const App = () => {
   const [lang, setLang] = useState('ar');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showWhatsapp, setShowWhatsapp] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [formData, setFormData] = useState({ name: '', city: '', serviceType: 'استقدام' });
@@ -220,10 +221,7 @@ const App = () => {
   ], [lang]);
 
   useEffect(() => {
-    // تحديث عنوان الصفحة
     document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه" : "Nukhba Staffing | Luxury Recruitment";
-
-    // استعادة لوجو التميز في التابة (Favicon)
     const svgIcon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>`;
     let favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
@@ -238,7 +236,11 @@ const App = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      // اظهر زر الواتساب بعد سكرول 300 بكسل
+      setShowWhatsapp(window.scrollY > 300);
+    };
     window.addEventListener('scroll', handleScroll);
     const slideInterval = setInterval(nextSlide, 8000);
     return () => {
@@ -273,6 +275,26 @@ const App = () => {
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .animate-float { animation: float 5s ease-in-out infinite; }
+        
+        /* Optimized WhatsApp Button Animations */
+        @keyframes whatsapp-entrance {
+          0% { opacity: 0; transform: translateY(100px) scale(0.5) rotate(-45deg); }
+          100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+        }
+        @keyframes whatsapp-soft-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes whatsapp-glow {
+          0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+          70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-btn {
+          animation: whatsapp-entrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+                     whatsapp-soft-float 3s ease-in-out infinite 0.8s, 
+                     whatsapp-glow 2s infinite;
+        }
       `}</style>
 
       <Navbar lang={lang} setLang={setLang} scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} t={t} onOrderClick={() => handleOrderClick()} />
@@ -444,15 +466,11 @@ const App = () => {
         </div>
       </section>
 
-      {/* LUXURY FOOTER (Updated: Center Rights, Auto-Alignment for English) */}
+      {/* LUXURY FOOTER */}
       <footer className={`bg-slate-900 text-white pt-24 pb-12 relative z-40 px-6 overflow-hidden ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
-        {/* Background Accent */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent opacity-50"></div>
-
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-20">
-
-            {/* Column 1: About & Branding */}
             <div className="md:col-span-5 space-y-8">
               <div className={`flex items-center gap-4 ${lang === 'ar' ? 'justify-start' : 'justify-start'}`}>
                 <div className="w-14 h-14 bg-amber-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3">
@@ -475,7 +493,6 @@ const App = () => {
               </div>
             </div>
 
-            {/* Column 2: Quick Links */}
             <div className="md:col-span-3 space-y-8">
               <h4 className="text-xl font-black text-white relative inline-block">
                 {t.footer.quickLinks}
@@ -493,7 +510,6 @@ const App = () => {
               </ul>
             </div>
 
-            {/* Column 3: Contact Details */}
             <div className="md:col-span-4 space-y-8">
               <h4 className="text-xl font-black text-white relative inline-block">
                 {t.footer.contactUs}
@@ -520,10 +536,7 @@ const App = () => {
                 </div>
               </div>
             </div>
-
           </div>
-
-          {/* Footer Bottom (Centered Copyright Only) */}
           <div className="pt-12 border-t border-white/5 flex justify-center items-center">
             <p className="text-slate-500 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-center leading-relaxed">
               {t.footer.rights} © {new Date().getFullYear()}
@@ -532,9 +545,36 @@ const App = () => {
         </div>
       </footer>
 
+      {/* FIXED: WhatsApp Button with Proper Icon & Triggered on Scroll */}
+      {showWhatsapp && (
+        <a 
+          href={`https://wa.me/${phoneNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`fixed bottom-6 ${lang === 'ar' ? 'left-6' : 'right-6'} z-[500] whatsapp-btn group cursor-pointer transition-all duration-500`}
+        >
+          <div className="relative">
+            {/* Soft Glow */}
+            <div className="absolute inset-0 bg-[#25D366] rounded-full opacity-20 group-hover:opacity-40 transition-opacity"></div>
+            
+            {/* Smaller, Premium Circle Button */}
+            <div className="relative w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.3)] flex items-center justify-center text-white transform transition-all group-hover:scale-110 active:scale-95">
+              {/* Official WhatsApp SVG Logo */}
+              <svg 
+                viewBox="0 0 24 24" 
+                className="w-8 h-8 md:w-9 md:h-9 fill-current" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      )}
+
       {/* Modal Form */}
       {showModal && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 md:p-6 bg-slate-900/98 backdrop-blur-xl animate-in fade-in duration-500 text-right">
+        <div className="fixed inset-0 z-[600] flex items-center justify-center p-4 md:p-6 bg-slate-900/98 backdrop-blur-xl animate-in fade-in duration-500 text-right">
           <div className="bg-white w-full max-w-xl rounded-[3rem] p-10 md:p-16 shadow-2xl relative overflow-y-auto max-h-[90vh] animate-in zoom-in duration-500">
             <button onClick={() => setShowModal(false)} className={`absolute top-8 ${lang === 'ar' ? 'left-8' : 'right-8'} text-slate-400 hover:text-slate-900 p-2 hover:rotate-90 transition-all`}><X size={28} /></button>
             <div className="space-y-10">
