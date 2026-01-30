@@ -340,27 +340,45 @@ const App = () => {
 
       {/* Steps Section - وضوح الأرقام */}
       <section ref={stepsRef} className="py-24 md:py-32 bg-[#FDFBF7] relative z-30 overflow-hidden px-6 text-center">
-        <div className="max-w-7xl mx-auto">
-          <div className={`mb-16 space-y-2 reveal ${stepsVisible ? 'visible' : ''}`}>
-            <span className="text-amber-600 font-black text-[10px] uppercase tracking-[0.4em]">{t.steps.title}</span>
-            <h2 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight">{t.steps.subtitle}</h2>
+  <div className="max-w-7xl mx-auto">
+    <div className={`mb-16 space-y-4 reveal ${stepsVisible ? 'visible' : ''}`}>
+      {/* تكبير خط العنوان الصغير العلوي */}
+      <span className="text-amber-600 font-black text-xs md:text-sm uppercase tracking-[0.4em]">
+        {t.steps.title}
+      </span>
+      {/* تكبير العنوان الرئيسي "بثلاث خطوات" */}
+      <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+        {t.steps.subtitle}
+      </h2>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      {[Search, ClipboardCheck, Truck].map((Icon, i) => (
+        <div key={i} className={`relative flex flex-col items-center p-10 md:p-14 rounded-[3.5rem] bg-white transition-all duration-700 reveal delay-${i + 1} ${stepsVisible ? 'visible' : ''} border border-transparent hover:border-amber-100 group shadow-sm hover:shadow-2xl animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
+          
+          <div className={`absolute top-6 ${lang === 'ar' ? 'right-8' : 'left-8'} text-slate-200/90 font-black text-7xl md:text-8xl transition-colors group-hover:text-amber-200/50 -z-0 opacity-100`}>
+            0{i + 1}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {[Search, ClipboardCheck, Truck].map((Icon, i) => (
-              <div key={i} className={`relative flex flex-col items-center p-10 md:p-14 rounded-[3.5rem] bg-white transition-all duration-700 reveal delay-${i + 1} ${stepsVisible ? 'visible' : ''} border border-transparent hover:border-amber-100 group shadow-sm hover:shadow-2xl animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
-                <div className={`absolute top-6 ${lang === 'ar' ? 'right-8' : 'left-8'} text-slate-200/90 font-black text-7xl md:text-8xl transition-colors group-hover:text-amber-200/50 -z-0 opacity-100`}>0{i + 1}</div>
-                <div className="w-14 h-14 md:w-18 md:h-18 bg-slate-900 text-amber-500 rounded-[1.5rem] flex items-center justify-center shadow-2xl mb-8 transform transition-all group-hover:rotate-12 group-hover:bg-amber-600 group-hover:text-white z-10">
-                  <Icon size={28} />
-                </div>
-                <div className="space-y-2 z-10 text-center">
-                  <h3 className="text-lg md:text-xl font-black text-slate-900 leading-tight">{t.steps.items[i].title}</h3>
-                  <p className="text-slate-500 font-medium text-xs md:text-sm leading-relaxed max-w-xs mx-auto">{t.steps.items[i].desc}</p>
-                </div>
-              </div>
-            ))}
+
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-900 text-amber-500 rounded-[1.5rem] flex items-center justify-center shadow-2xl mb-8 transform transition-all group-hover:rotate-12 group-hover:bg-amber-600 group-hover:text-white z-10">
+            <Icon size={32} />
+          </div>
+
+          <div className="space-y-4 z-10 text-center">
+            {/* تكبير عنوان الكارد */}
+            <h3 className="text-xl md:text-2xl font-black text-slate-900 leading-tight">
+              {t.steps.items[i].title}
+            </h3>
+            {/* تكبير وصف الكارد وجعل لونه أغمق قليلاً للوضوح */}
+            <p className="text-slate-600 font-medium text-sm md:text-base leading-relaxed max-w-xs mx-auto">
+              {t.steps.items[i].desc}
+            </p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Nationalities Section */}
       <section ref={nationsRef} id="nations" className="py-24 md:py-32 bg-white relative z-30 px-6">
