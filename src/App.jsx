@@ -384,8 +384,9 @@ const App = () => {
       <section ref={nationsRef} id="nations" className="py-24 md:py-32 bg-white relative z-30 px-6">
         <div className="max-w-7xl mx-auto">
           <div className={`space-y-4 mb-20 text-center reveal ${nationsVisible ? 'visible' : ''}`}>
-            <span className="text-amber-600 font-black text-[10px] uppercase tracking-[0.5em] block mb-2">{t.nations.tag}</span>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
+<span className="text-amber-600 font-black text-sm md:text-base lg:text-lg uppercase tracking-[0.3em] md:tracking-[0.5em] block mb-4">
+  {t.nations.tag}
+</span>            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
             <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full mt-6 shadow-sm"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
