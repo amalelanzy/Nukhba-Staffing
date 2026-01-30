@@ -347,7 +347,7 @@ const App = () => {
         {t.steps.title}
       </span>
       {/* تكبير العنوان الرئيسي "بثلاث خطوات" */}
-      <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+      <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
         {t.steps.subtitle}
       </h2>
     </div>
