@@ -522,12 +522,12 @@ const App = () => {
                   </div>
                   <div className="text-slate-300 font-bold text-lg dir-ltr">{phoneNumber}+</div>
                 </a>
-                <a href={`mailto:${emailAddress}`} className="flex items-center gap-4 group">
+                {/* <a href={`mailto:${emailAddress}`} className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-full bg-amber-600/10 flex items-center justify-center text-amber-500 border border-amber-600/20 group-hover:bg-amber-600 group-hover:text-white transition-all">
                     <Mail size={20} />
                   </div>
                   <div className="text-slate-300 font-bold text-lg">{emailAddress}</div>
-                </a>
+                </a> */}
                 <div className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-full bg-amber-600/10 flex items-center justify-center text-amber-500 border border-amber-600/20">
                     <MapPin size={20} />
