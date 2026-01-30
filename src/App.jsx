@@ -3,11 +3,11 @@ import {
   Phone, MessageCircle, CheckCircle2, Globe, ShieldCheck, Menu, X,
   User, MapPin, Send, ArrowRight, Star, Users, Award, Zap,
   ChevronRight, ChevronLeft, Heart, FileText, Truck, Verified,
-  Search, ClipboardCheck, Languages
+  Search, ClipboardCheck, Languages, Instagram, Twitter, Facebook, Mail
 } from 'lucide-react';
 
 // ==========================================
-// 1. القواميس والترجمات (تم تحديث نصوص الهيرو لتكون أكثر جاذبية وقوة)
+// 1. القواميس والترجمات
 // ==========================================
 const translations = {
   ar: {
@@ -50,7 +50,14 @@ const translations = {
       rent: "إيجار",
       recruitment: "استقدام", confirm: "تأكيد الطلب واتساب"
     },
-    footer: { desc: "نصنعُ الفرق في كل منزل سعودي برؤية ملكية تتجاوز التوقعات عبر نُخبة الكوادر.", rights: "جميع الحقوق محفوظة - نُخبة الكوادر", about: "عن المؤسسة", contact: "اتصلي بنا" }
+    footer: {
+      aboutTitle: "نُخبة الكوادر",
+      aboutDesc: "نحن في نُخبة الكوادر نصنعُ الفرق في كل منزل سعودي برؤية ملكية تتجاوز التوقعات، ملتزمون بأعلى معايير الجودة في استقدام الكوادر المنزلية.",
+      quickLinks: "روابط سريعة",
+      contactUs: "تواصل معنا",
+      address: "المملكة العربية السعودية، الرياض",
+      rights: "جميع الحقوق محفوظة لـ نُخبة الكوادر"
+    }
   },
   en: {
     nav: { home: 'Home', features: 'Features', nations: 'Nationalities', pricing: 'Packages', order: 'Order Now' },
@@ -92,12 +99,19 @@ const translations = {
       rent: "Rent",
       recruitment: "Recruitment", confirm: "Confirm WhatsApp"
     },
-    footer: { desc: "Making a difference in Saudi homes with a royal vision.", rights: "All Rights Reserved - Nukhba", about: "About", contact: "Contact" }
+    footer: {
+      aboutTitle: "Nukhba Staffing",
+      aboutDesc: "Making a difference in Saudi homes with a royal vision, we are committed to the highest standards of quality in domestic staff recruitment.",
+      quickLinks: "Quick Links",
+      contactUs: "Contact Us",
+      address: "Saudi Arabia, Riyadh",
+      rights: "All Rights Reserved - Nukhba Staffing"
+    }
   }
 };
 
 // ==========================================
-// 2. المكونات المساعدة (Hooks & Components)
+// 2. المكونات المساعدة
 // ==========================================
 
 const useReveal = () => {
@@ -131,7 +145,6 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
         </div>
       </div>
 
-      {/* Desktop Menu */}
       <div className="hidden lg:flex items-center gap-8">
         {['home', 'features', 'nations', 'pricing'].map((key) => (
           <a key={key} href={`#${key === 'home' ? '' : key}`} className={`font-bold text-sm transition-all relative group ${scrolled ? 'text-slate-700 hover:text-amber-600' : 'text-white/90 hover:text-white'}`}>
@@ -139,18 +152,15 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
             <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-amber-600 transition-all group-hover:w-full"></span>
           </a>
         ))}
-
         <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`flex items-center gap-2 font-bold text-xs px-3 py-1.5 rounded-full border transition-all ${scrolled ? 'border-slate-200 text-slate-700 hover:bg-slate-50' : 'border-white/20 text-white hover:bg-white/10'}`}>
           <Globe size={14} />
           {lang === 'ar' ? 'English' : 'العربية'}
         </button>
-
         <button onClick={onOrderClick} className="bg-amber-600 text-white px-7 py-2.5 rounded-full font-bold text-xs hover:bg-amber-700 shadow-md active:scale-95 transition-all">
           {t.nav.order}
         </button>
       </div>
 
-      {/* Mobile Toggle Icons */}
       <div className="lg:hidden flex items-center gap-4">
         <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className={`p-2 rounded-lg ${scrolled || isMenuOpen ? 'text-slate-900' : 'text-white'}`}>
           <Languages size={20} />
@@ -161,23 +171,14 @@ const Navbar = ({ lang, setLang, scrolled, isMenuOpen, setIsMenuOpen, t, onOrder
       </div>
     </div>
 
-    {/* Mobile Menu Content (الجزء الذي كان ناقصاً) */}
     <div className={`lg:hidden overflow-hidden transition-all duration-500 bg-white shadow-xl ${isMenuOpen ? 'max-h-screen opacity-100 border-t border-slate-100' : 'max-h-0 opacity-0'}`}>
       <div className="px-6 py-8 flex flex-col gap-6 text-center">
         {['home', 'features', 'nations', 'pricing'].map((key) => (
-          <a
-            key={key}
-            href={`#${key === 'home' ? '' : key}`}
-            onClick={() => setIsMenuOpen(false)}
-            className="text-slate-800 font-black text-lg hover:text-amber-600 transition-colors"
-          >
+          <a key={key} href={`#${key === 'home' ? '' : key}`} onClick={() => setIsMenuOpen(false)} className="text-slate-800 font-black text-lg hover:text-amber-600 transition-colors">
             {t.nav[key]}
           </a>
         ))}
-        <button
-          onClick={() => { onOrderClick(); setIsMenuOpen(false); }}
-          className="bg-amber-600 text-white py-4 rounded-2xl font-black text-lg shadow-lg"
-        >
+        <button onClick={() => { onOrderClick(); setIsMenuOpen(false); }} className="bg-amber-600 text-white py-4 rounded-2xl font-black text-lg shadow-lg">
           {t.nav.order}
         </button>
       </div>
@@ -196,6 +197,8 @@ const App = () => {
 
   const t = translations[lang];
   const phoneNumber = "966532441576";
+  const emailAddress = "info@nukhba-staff.com";
+
   const nationalities = useMemo(() => [
     { country: lang === 'ar' ? "الفلبين" : "Philippines", sub: "Philippines", img: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=800&auto=format&fit=crop" },
     { country: lang === 'ar' ? "إثيوبيا" : "Ethiopia", sub: "Ethiopia", img: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=600&auto=format&fit=crop" },
@@ -209,6 +212,7 @@ const App = () => {
     { ...t.hero[1], image: "https://plus.unsplash.com/premium_photo-1679920025550-75324e59680f?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     { ...t.hero[2], image: "https://plus.unsplash.com/premium_photo-1661663379320-213541539ec8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
   ], [t]);
+
   const packages = useMemo(() => [
     { title: lang === 'ar' ? "باقة 3 أشهر" : "3 Months", price: "5,100", features: lang === 'ar' ? ["إمكانية الاستبدال", "دعم فني 24/7", "أفضل الكوادر المختارة"] : ["Replacement Option", "24/7 Support", "Elite Staff"] },
     { title: lang === 'ar' ? "باقة 6 أشهر" : "6 Months", price: "9,900", features: lang === 'ar' ? ["سعر موفر جداً", "أولوية في الاختيار", "تغطية شاملة للمناطق"] : ["Great Savings", "Priority Selection", "Full Coverage"], popular: true },
@@ -217,14 +221,6 @@ const App = () => {
 
   useEffect(() => {
     document.title = lang === 'ar' ? " نُخبة الكوادر | الفخامة في استقدام عماله منزليه" : "Nukhba Staffing | Luxury Recruitment";
-    const svgIcon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>`;
-    let favicon = document.querySelector('link[rel="icon"]');
-    if (!favicon) {
-      favicon = document.createElement('link');
-      favicon.rel = 'icon';
-      document.head.appendChild(favicon);
-    }
-    favicon.href = svgIcon;
   }, [lang]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -326,7 +322,6 @@ const App = () => {
                     <h4 className="text-lg md:text-2xl lg:text-3xl font-black text-slate-900 tracking-tighter tabular-nums group-hover:text-amber-600 transition-colors duration-500">
                       {stat.value}
                     </h4>
-
                     <p className="text-slate-400 font-bold text-xs md:text-sm uppercase tracking-widest leading-relaxed">
                       {stat.label}
                     </p>
@@ -338,38 +333,30 @@ const App = () => {
         </div>
       </section>
 
-      {/* Steps Section - وضوح الأرقام */}
+      {/* Steps Section */}
       <section ref={stepsRef} className="py-24 md:py-32 bg-[#FDFBF7] relative z-30 overflow-hidden px-6 text-center">
         <div className="max-w-7xl mx-auto">
           <div className={`mb-16 space-y-4 reveal ${stepsVisible ? 'visible' : ''}`}>
-            {/* تكبير خط العنوان الصغير العلوي */}
             <span className="text-amber-600 font-black text-sm md:text-lg lg:text-xl uppercase tracking-[0.3em] block mb-2">
               {t.steps.title}
             </span>
-            {/* تكبير العنوان الرئيسي "بثلاث خطوات" */}
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
               {t.steps.subtitle}
             </h2>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[Search, ClipboardCheck, Truck].map((Icon, i) => (
               <div key={i} className={`relative flex flex-col items-center p-10 md:p-14 rounded-[3.5rem] bg-white transition-all duration-700 reveal delay-${i + 1} ${stepsVisible ? 'visible' : ''} border border-transparent hover:border-amber-100 group shadow-sm hover:shadow-2xl animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
-
                 <div className={`absolute top-6 ${lang === 'ar' ? 'right-8' : 'left-8'} text-slate-200/90 font-black text-7xl md:text-8xl transition-colors group-hover:text-amber-200/50 -z-0 opacity-100`}>
                   0{i + 1}
                 </div>
-
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-900 text-amber-500 rounded-[1.5rem] flex items-center justify-center shadow-2xl mb-8 transform transition-all group-hover:rotate-12 group-hover:bg-amber-600 group-hover:text-white z-10">
                   <Icon size={32} />
                 </div>
-
                 <div className="space-y-4 z-10 text-center">
-                  {/* تكبير عنوان الكارد */}
                   <h3 className="text-xl md:text-2xl font-black text-slate-900 leading-tight">
                     {t.steps.items[i].title}
                   </h3>
-                  {/* تكبير وصف الكارد وجعل لونه أغمق قليلاً للوضوح */}
                   <p className="text-slate-600 font-medium text-sm md:text-base leading-relaxed max-w-xs mx-auto">
                     {t.steps.items[i].desc}
                   </p>
@@ -386,7 +373,8 @@ const App = () => {
           <div className={`space-y-4 mb-20 text-center reveal ${nationsVisible ? 'visible' : ''}`}>
             <span className="text-amber-600 font-black text-sm md:text-base lg:text-lg uppercase tracking-[0.3em] md:tracking-[0.5em] block mb-4">
               {t.nations.tag}
-            </span>            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">{t.nations.title}</h2>
             <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full mt-6 shadow-sm"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
@@ -415,30 +403,19 @@ const App = () => {
       {/* Pricing Section */}
       <section ref={pricingRef} id="pricing" className="py-24 md:py-32 bg-[#FDFBF7] relative z-40 px-6">
         <div className={`max-w-7xl mx-auto px-6 text-center space-y-3 mb-16 reveal ${pricingVisible ? 'visible' : ''}`}>
-          {/* تصغير عنوان القسم */}
           <h2 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight">{t.pricing.title}</h2>
           <p className="text-slate-500 text-xs md:text-base font-medium max-w-3xl mx-auto leading-relaxed text-center">{t.pricing.subtitle}</p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 max-w-7xl mx-auto">
           {packages.map((pkg, i) => (
             <div key={i} className={`group relative flex flex-col p-10 md:p-12 rounded-[3rem] transition-all duration-700 reveal delay-${i + 1} ${pricingVisible ? 'visible' : ''} ${pkg.popular ? 'bg-slate-900 text-white scale-100 lg:scale-105 shadow-2xl' : 'bg-white text-slate-900 border border-slate-100 shadow-sm hover:shadow-xl'}`}>
-
-              {/* كلمة "الأكثر طلباً" */}
               {pkg.popular && <div className={`absolute top-0 ${lang === 'ar' ? 'right-1/2 translate-x-1/2' : 'left-1/2 -translate-x-1/2'} -translate-y-1/2 bg-amber-600 text-white px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl animate-pulse`}>{t.pricing.popular}</div>}
-
-              {/* اسم الباقة */}
               <h3 className={`text-xl md:text-2xl font-black mb-6 ${pkg.popular ? 'text-amber-400' : 'text-amber-600'}`}>{pkg.title}</h3>
-
-              {/* السعر */}
               <div className="flex items-baseline gap-2 mb-8 text-right">
                 <span className="text-3xl md:text-5xl font-black tracking-tighter tabular-nums">{pkg.price}</span>
                 <span className={`text-sm md:text-lg font-bold ${pkg.popular ? 'text-slate-400' : 'text-slate-500'}`}>{t.pricing.currency}</span>
               </div>
-
               <div className={`h-px w-full mb-8 ${pkg.popular ? 'bg-white/10' : 'bg-amber-100'}`}></div>
-
-              {/* قائمة المميزات */}
               <ul className="space-y-4 mb-12 flex-grow">
                 {pkg.features.map((f, idx) => (
                   <li key={idx} className="flex items-center gap-3 font-bold text-sm md:text-base transition-transform group-hover:translate-x-[-5px]">
@@ -446,8 +423,6 @@ const App = () => {
                   </li>
                 ))}
               </ul>
-
-              {/* زر الحجز */}
               <button onClick={() => handleOrderClick(pkg)} className={`w-full py-4 md:py-5 px-8 rounded-full font-black text-lg md:text-2xl transition-all transform hover:scale-105 active:scale-95 shadow-xl ${pkg.popular ? 'bg-amber-600 text-white hover:bg-amber-700' : 'bg-slate-900 text-white hover:bg-amber-600'}`}>
                 {t.pricing.book}
               </button>
@@ -456,25 +431,90 @@ const App = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-white py-24 border-t border-slate-100 relative z-40 text-center px-6">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-14 h-14 bg-amber-600 rounded-[1.8rem] flex items-center justify-center shadow-2xl">
-              <Award className="text-white w-8 h-8 fill-white" />
+      {/* LUXURY FOOTER (Updated: Center Rights, Auto-Alignment for English) */}
+      <footer className={`bg-slate-900 text-white pt-24 pb-12 relative z-40 px-6 overflow-hidden ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
+        {/* Background Accent */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent opacity-50"></div>
+        
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-20">
+            
+            {/* Column 1: About & Branding */}
+            <div className="md:col-span-5 space-y-8">
+              <div className={`flex items-center gap-4 ${lang === 'ar' ? 'justify-start' : 'justify-start'}`}>
+                <div className="w-14 h-14 bg-amber-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3">
+                  <Award className="text-white w-8 h-8" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-black tracking-tighter italic">{t.footer.aboutTitle}</h3>
+                  <p className="text-amber-500 font-bold text-[10px] uppercase tracking-widest">{lang === 'ar' ? 'نُخبة الاستقدام' : 'Elite Recruitment'}</p>
+                </div>
+              </div>
+              <p className="text-slate-400 font-medium leading-relaxed max-w-md text-lg italic">
+                "{t.footer.aboutDesc}"
+              </p>
+              <div className="flex gap-4">
+                {[Instagram, Twitter, Facebook].map((Icon, idx) => (
+                  <a key={idx} href="#" className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-amber-500 hover:bg-white/10 hover:border-amber-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <Icon size={20} />
+                  </a>
+                ))}
+              </div>
             </div>
-            <span className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{lang === 'ar' ? 'نُخبة الكوادر' : 'Nukhba Staffing'}</span>
-            <p className="text-slate-500 font-black text-sm md:text-base lg:text-lg uppercase tracking-wider leading-relaxed mb-2">
-  {lang === 'ar' ? 'لاستقدام عمالة منزلية' : 'For domestic Staff Recruitment'}
-</p>
+
+            {/* Column 2: Quick Links */}
+            <div className="md:col-span-3 space-y-8">
+              <h4 className="text-xl font-black text-white relative inline-block">
+                {t.footer.quickLinks}
+                <span className={`absolute bottom-[-8px] ${lang === 'ar' ? 'right-0' : 'left-0'} w-8 h-1 bg-amber-600 rounded-full`}></span>
+              </h4>
+              <ul className="space-y-4">
+                {['home', 'features', 'nations', 'pricing'].map((key) => (
+                  <li key={key}>
+                    <a href={`#${key === 'home' ? '' : key}`} className="text-slate-400 hover:text-amber-500 font-bold text-lg flex items-center gap-2 transition-colors group">
+                      <ChevronRight size={16} className={`text-amber-600 opacity-0 group-hover:opacity-100 transition-all ${lang === 'ar' ? 'rotate-180' : ''}`} />
+                      {t.nav[key]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Contact Details */}
+            <div className="md:col-span-4 space-y-8">
+              <h4 className="text-xl font-black text-white relative inline-block">
+                {t.footer.contactUs}
+                <span className={`absolute bottom-[-8px] ${lang === 'ar' ? 'right-0' : 'left-0'} w-8 h-1 bg-amber-600 rounded-full`}></span>
+              </h4>
+              <div className="space-y-6">
+                <a href={`tel:${phoneNumber}`} className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-full bg-amber-600/10 flex items-center justify-center text-amber-500 border border-amber-600/20 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                    <Phone size={20} />
+                  </div>
+                  <div className="text-slate-300 font-bold text-lg dir-ltr">{phoneNumber}+</div>
+                </a>
+                <a href={`mailto:${emailAddress}`} className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-full bg-amber-600/10 flex items-center justify-center text-amber-500 border border-amber-600/20 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                    <Mail size={20} />
+                  </div>
+                  <div className="text-slate-300 font-bold text-lg">{emailAddress}</div>
+                </a>
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-full bg-amber-600/10 flex items-center justify-center text-amber-500 border border-amber-600/20">
+                    <MapPin size={20} />
+                  </div>
+                  <div className="text-slate-300 font-bold text-lg">{t.footer.address}</div>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <p className="text-slate-400 font-bold text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed text-center">{t.footer.desc}</p>
-          <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-8 text-center">
-            <p className="text-slate-300 text-[9px] md:text-xs font-black uppercase tracking-[0.5em]">© {new Date().getFullYear()} {t.footer.rights}</p>
-            <div className="flex gap-10 text-slate-400 text-[10px] md:text-sm font-black uppercase tracking-widest">
-              <a href="#" className="hover:text-amber-600 transition-colors">{t.footer.about}</a>
-              <a href="#" className="hover:text-amber-600 transition-colors">{t.footer.contact}</a>
-            </div>
+
+          {/* Footer Bottom (Centered Copyright Only) */}
+          <div className="pt-12 border-t border-white/5 flex justify-center items-center">
+            <p className="text-slate-500 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-center leading-relaxed">
+              {t.footer.rights} © {new Date().getFullYear()}
+            </p>
           </div>
         </div>
       </footer>
